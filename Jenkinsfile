@@ -1,12 +1,11 @@
 pipeline {
-    agent none
+    agent { label 'aws-labels' }
     tools {
         maven "maven-3.9.6"
     }
 
     stages {
         stage('Run Tests') {
-            agent { label 'aws-labels' }
             steps {
                 checkout scm
                 sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
