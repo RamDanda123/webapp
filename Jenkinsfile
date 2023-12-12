@@ -19,7 +19,7 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-              withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+              withSonarQubeEnv('sonar') {
                   sh "mvn clean verify sonar:sonar -Dsonar.projectKey=myapp"
               }
             }
