@@ -1,6 +1,5 @@
 pipeline {
-    
-
+    agent none
     tools {
         maven "maven-3.9.6"
     }
