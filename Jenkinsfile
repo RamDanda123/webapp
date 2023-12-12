@@ -5,30 +5,32 @@ pipeline {
     }
 
     stages {
-        parallel {
-            stage('Build1') {
-                agent { label 'aws-labels' }
-                steps {
-                    checkout scm
-                    sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
-                }
-                post {
-                    success {
-                        junit '**/target/surefire-reports/TEST-*.xml'
-                        archiveArtifacts 'target/*.jar'
+        stage('Run Tests') {
+            parallel {
+                stage('Build1') {
+                    agent { label 'aws-labels' }
+                    steps {
+                        checkout scm
+                        sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
+                    }
+                    post {
+                        success {
+                            junit '**/target/surefire-reports/TEST-*.xml'
+                            archiveArtifacts 'target/*.jar'
+                        }
                     }
                 }
-            }
-            stage('Build2') {
-                agent { label 'maven-labels' }
-                steps {
-                    checkout scm
-                    sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
-                }
-                post {
-                    success {
-                        junit '**/target/surefire-reports/TEST-*.xml'
-                        archiveArtifacts 'target/*.jar'
+                stage('Build2') {
+                    agent { label 'maven-labels' }
+                    steps {
+                        checkout scm
+                        sh "mvn -Dmaven.test.failure.ignore=true -s settings.xml clean deploy"
+                    }
+                    post {
+                        success {
+                            junit '**/target/surefire-reports/TEST-*.xml'
+                            archiveArtifacts 'target/*.jar'
+                        }
                     }
                 }
             }
