@@ -18,8 +18,10 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
-                sh "mvn clean verify sonar:sonar -Dsonar.projectKey=myapp"
+            steps {
+              withSonarQubeEnv(credentialsId: 'SONAR_TOKEN') {
+                  sh "mvn clean verify sonar:sonar -Dsonar.projectKey=myapp"
+              }
             }
         }
     }
