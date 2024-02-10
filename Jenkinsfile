@@ -8,8 +8,7 @@ pipeline {
 
     stages {
         stage('Build') {
-            steps {
-                // Get some code from a GitHub repository
+            steps {               
                 checkout scm
                 //git 'https://github.com/RamDanda123/webapp.git'
 
