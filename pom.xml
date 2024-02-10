@@ -72,7 +72,7 @@
       </plugins>
     </pluginManagement>
   </build>
-  <distributionManagement>
+ <!-- <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
       <id>webapp_releases</id>
@@ -87,5 +87,5 @@
       <url>http://18.205.114.142:8081/nexus/content/repositories/webapp_snapshots/</url>
       <layout>legacy</layout>
     </snapshotRepository>
-  </distributionManagement>
+  </distributionManagement>-->
 </project>
